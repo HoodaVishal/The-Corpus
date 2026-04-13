@@ -1,0 +1,393 @@
+/* ============================================================
+   NAVBAR.CSS — The Corpus
+   Fixed navigation bar with Apple-style layout and
+   animated search overlay that slides in from right to left
+   ============================================================ */
+
+
+/* ============================================================
+   1. NAVBAR BASE
+   ============================================================ */
+
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-height);
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--color-border);
+  z-index: var(--z-navbar);
+  overflow: hidden;
+}
+
+
+/* ============================================================
+   2. NAVBAR INNER WRAPPER
+   ============================================================ */
+
+.navbar__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* ============================================================
+   3. LOGO
+   ============================================================ */
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  opacity: 1;
+  transition: opacity var(--transition-slow);
+  z-index: 2;
+}
+
+.navbar__logo img {
+  height: 20px;
+  width: auto;
+  object-fit: contain;
+}
+
+.navbar__logo:hover {
+  opacity: 0.8;
+}
+
+
+/* ============================================================
+   4. NAV LINKS
+   ============================================================ */
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 1;
+  transition:
+    opacity var(--transition-slow),
+    transform var(--transition-slow);
+}
+
+.navbar__links a {
+  font-size: var(--font-size-nav);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  letter-spacing: var(--letter-spacing-normal);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  transition: color var(--transition-fast);
+  opacity: 0.85;
+}
+
+.navbar__links a:hover {
+  color: var(--color-text-primary);
+  opacity: 1;
+}
+
+.navbar__links a.active {
+  color: var(--color-text-primary);
+  opacity: 1;
+}
+
+
+/* ============================================================
+   5. SEARCH BUTTON
+   ============================================================ */
+
+.navbar__search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  color: var(--color-text-primary);
+  opacity: 0.85;
+  flex-shrink: 0;
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-slow);
+  z-index: 2;
+}
+
+.navbar__search-btn:hover {
+  opacity: 1;
+}
+
+.navbar__search-btn svg {
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   6. SEARCH OVERLAY
+   ============================================================ */
+
+.navbar__search-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  display: flex;
+  align-items: center;
+  padding-inline: var(--space-6);
+  gap: var(--space-4);
+
+  /* Hidden state — off screen to the right */
+  transform: translateX(100%);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1),
+    opacity var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 3;
+}
+
+/* Active state — slides in from right to left */
+.navbar__search-overlay.is-active {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+
+/* ============================================================
+   7. SEARCH INPUT
+   ============================================================ */
+
+.navbar__search-input-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background-color: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 0 var(--space-4);
+  height: 28px;
+  transition: border-color var(--transition-fast);
+}
+
+.navbar__search-input-wrapper:focus-within {
+  border-color: var(--color-border-strong);
+}
+
+.navbar__search-input-wrapper svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--color-text-muted);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.navbar__search-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family);
+  caret-color: var(--color-accent);
+}
+
+.navbar__search-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+
+/* ============================================================
+   8. SEARCH CANCEL BUTTON
+   ============================================================ */
+
+.navbar__search-cancel {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-accent);
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast);
+  cursor: pointer;
+}
+
+.navbar__search-cancel:hover {
+  color: var(--color-accent-hover);
+}
+
+
+/* ============================================================
+   9. SEARCH ACTIVE STATE — hide logo and links
+   ============================================================ */
+
+#navbar.search-active .navbar__logo {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#navbar.search-active .navbar__links {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateX(-20px);
+}
+
+#navbar.search-active .navbar__search-btn {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   10. MOBILE MENU BUTTON (hamburger)
+   ============================================================ */
+
+.navbar__menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.navbar__menu-btn span {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background-color: var(--color-text-primary);
+  border-radius: var(--radius-full);
+  transition:
+    transform var(--transition-base),
+    opacity var(--transition-base);
+}
+
+/* Hamburger → X animation */
+.navbar__menu-btn.is-open span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.navbar__menu-btn.is-open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.navbar__menu-btn.is-open span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+
+/* ============================================================
+   11. MOBILE DROPDOWN MENU
+   ============================================================ */
+
+.navbar__mobile-menu {
+  position: fixed;
+  top: var(--navbar-height);
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-4) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  z-index: calc(var(--z-navbar) - 1);
+
+  /* Hidden state */
+  transform: translateY(-10px);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--transition-base),
+    opacity var(--transition-base);
+}
+
+.navbar__mobile-menu.is-open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.navbar__mobile-menu a {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  padding: var(--space-3) var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+  opacity: 0.85;
+  transition: opacity var(--transition-fast);
+}
+
+.navbar__mobile-menu a:last-child {
+  border-bottom: none;
+}
+
+.navbar__mobile-menu a:hover {
+  opacity: 1;
+}
+
+
+/* ============================================================
+   12. RESPONSIVE
+   ============================================================ */
+
+/* Tablet and below — hide desktop links, show hamburger */
+@media (max-width: 1024px) {
+  .navbar__links {
+    display: none;
+  }
+
+  .navbar__search-btn {
+    display: none;
+  }
+
+  .navbar__menu-btn {
+    display: flex;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .navbar__inner {
+    padding-inline: var(--space-4);
+  }
+
+  .navbar__search-overlay {
+    padding-inline: var(--space-4);
+  }
+}

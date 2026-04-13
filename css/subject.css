@@ -1,0 +1,946 @@
+/* ============================================================
+   SUBJECT.CSS — The Corpus
+   Shared styles for all subject landing pages:
+   python/index.html, machine-learning/index.html, etc.
+   ============================================================ */
+
+
+/* ============================================================
+   1. SUBJECT HERO
+   ============================================================ */
+
+.subject-hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  padding-bottom: var(--space-16);
+}
+
+
+/* ============================================================
+   2. SUBJECT HERO BACKGROUND
+   ============================================================ */
+
+.subject-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.subject-hero__gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 70% 60% at 50% -10%,
+      var(--subject-color-alpha, rgba(41, 151, 255, 0.15)) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 40% 30% at 90% 50%,
+      var(--subject-color-alpha-soft, rgba(41, 151, 255, 0.07)) 0%,
+      transparent 60%
+    );
+}
+
+.subject-hero__noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+.subject-hero__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      var(--color-border) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      var(--color-border) 1px,
+      transparent 1px
+    );
+  background-size: 60px 60px;
+  opacity: 0.3;
+  mask-image: radial-gradient(
+    ellipse 80% 80% at 50% 50%,
+    black 0%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 80% at 50% 50%,
+    black 0%,
+    transparent 100%
+  );
+}
+
+
+/* ============================================================
+   3. SUBJECT HERO CONTENT
+   ============================================================ */
+
+.subject-hero__content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 760px;
+}
+
+.subject-hero__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.subject-hero__breadcrumb a {
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.subject-hero__breadcrumb a:hover {
+  color: var(--color-text-primary);
+}
+
+.subject-hero__breadcrumb-sep {
+  opacity: 0.4;
+  font-size: var(--font-size-xs);
+}
+
+.subject-hero__breadcrumb-current {
+  color: var(--color-text-secondary);
+}
+
+.subject-hero__icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  color: var(--subject-color, var(--color-accent));
+  flex-shrink: 0;
+}
+
+.subject-hero__icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.subject-hero__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--subject-color, var(--color-accent));
+  background-color: var(--subject-color-bg, rgba(41, 151, 255, 0.08));
+  border: 1px solid var(--subject-color-border, rgba(41, 151, 255, 0.2));
+  border-radius: var(--radius-full);
+  padding: var(--space-1) var(--space-4);
+  width: fit-content;
+}
+
+.subject-hero__tag-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: var(--radius-full);
+  background-color: var(--subject-color, var(--color-accent));
+  flex-shrink: 0;
+}
+
+.subject-hero__title {
+  font-size: clamp(var(--font-size-2xl), 6vw, var(--font-size-3xl));
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-tight);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+}
+
+.subject-hero__title span {
+  color: var(--subject-color, var(--color-accent));
+}
+
+.subject-hero__desc {
+  font-size: clamp(var(--font-size-base), 2vw, var(--font-size-md));
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  max-width: 560px;
+}
+
+.subject-hero__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.subject-hero__meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.subject-hero__meta-item svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.subject-hero__meta-item strong {
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.subject-hero__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-top: var(--space-2);
+}
+
+
+/* ============================================================
+   4. SUBJECT PROGRESS BAR
+   Shows how far the user has progressed through the subject
+   ============================================================ */
+
+.subject-progress {
+  background-color: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border);
+  padding-block: var(--space-4);
+}
+
+.subject-progress__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.subject-progress__label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.subject-progress__track {
+  flex: 1;
+  height: 3px;
+  background-color: var(--color-bg-hover);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.subject-progress__fill {
+  height: 100%;
+  background-color: var(--subject-color, var(--color-accent));
+  border-radius: var(--radius-full);
+  width: 0%;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.subject-progress__count {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.subject-progress__count strong {
+  color: var(--subject-color, var(--color-accent));
+  font-weight: var(--font-weight-semibold);
+}
+
+
+/* ============================================================
+   5. TOPICS OVERVIEW SECTION
+   ============================================================ */
+
+.subject-topics {
+  padding-block: var(--space-20);
+  background-color: var(--color-bg);
+}
+
+.subject-topics__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-8);
+  margin-bottom: var(--space-12);
+  flex-wrap: wrap;
+}
+
+.subject-topics__heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.subject-topics__title {
+  font-size: clamp(var(--font-size-xl), 4vw, var(--font-size-2xl));
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text-primary);
+}
+
+.subject-topics__subtitle {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  max-width: 480px;
+  line-height: var(--line-height-relaxed);
+}
+
+.subject-topics__filter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.filter-btn {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: var(--space-2) var(--space-4);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.filter-btn:hover {
+  background-color: var(--color-bg-tertiary);
+  border-color: var(--color-border-strong);
+  color: var(--color-text-primary);
+}
+
+.filter-btn.is-active {
+  background-color: var(--subject-color-bg, rgba(41, 151, 255, 0.1));
+  border-color: var(--subject-color-border, rgba(41, 151, 255, 0.3));
+  color: var(--subject-color, var(--color-accent));
+}
+
+
+/* ============================================================
+   6. TOPIC LIST
+   ============================================================ */
+
+.topic-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+
+/* ============================================================
+   7. TOPIC ITEM
+   ============================================================ */
+
+.topic-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-5) var(--space-6);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.topic-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--subject-color, var(--color-accent));
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.topic-item:hover {
+  background-color: var(--color-bg-tertiary);
+  border-color: var(--color-border-strong);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-md);
+  color: var(--color-text-primary);
+}
+
+.topic-item:hover::before {
+  opacity: 1;
+}
+
+/* Completed state */
+.topic-item.is-completed {
+  border-color: var(--color-border);
+}
+
+.topic-item.is-completed::before {
+  opacity: 1;
+  background-color: var(--color-success);
+}
+
+/* Locked state */
+.topic-item.is-locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   8. TOPIC ITEM — NUMBER
+   ============================================================ */
+
+.topic-item__number {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.topic-item:hover .topic-item__number {
+  background-color: var(--subject-color-bg, rgba(41, 151, 255, 0.1));
+  border-color: var(--subject-color-border, rgba(41, 151, 255, 0.3));
+  color: var(--subject-color, var(--color-accent));
+}
+
+.topic-item.is-completed .topic-item__number {
+  background-color: rgba(48, 209, 88, 0.1);
+  border-color: rgba(48, 209, 88, 0.3);
+  color: var(--color-success);
+}
+
+
+/* ============================================================
+   9. TOPIC ITEM — BODY
+   ============================================================ */
+
+.topic-item__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.topic-item__title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-snug);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topic-item__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-normal);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: none;
+}
+
+
+/* ============================================================
+   10. TOPIC ITEM — META
+   ============================================================ */
+
+.topic-item__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-shrink: 0;
+}
+
+.topic-item__badge {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+/* Badge variants */
+.topic-item__badge--beginner {
+  color: var(--color-success);
+  background-color: rgba(48, 209, 88, 0.08);
+  border: 1px solid rgba(48, 209, 88, 0.2);
+}
+
+.topic-item__badge--intermediate {
+  color: var(--color-warning);
+  background-color: rgba(255, 214, 10, 0.08);
+  border: 1px solid rgba(255, 214, 10, 0.2);
+}
+
+.topic-item__badge--advanced {
+  color: var(--color-error);
+  background-color: rgba(255, 69, 58, 0.08);
+  border: 1px solid rgba(255, 69, 58, 0.2);
+}
+
+.topic-item__duration {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.topic-item__duration svg {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.topic-item__arrow {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.topic-item:hover .topic-item__arrow {
+  color: var(--subject-color, var(--color-accent));
+  transform: translateX(4px);
+}
+
+
+/* ============================================================
+   11. SECTION DIVIDER
+   Groups topics into sections e.g. "Getting Started"
+   ============================================================ */
+
+.topic-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+
+.topic-section:last-child {
+  margin-bottom: 0;
+}
+
+.topic-section__label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-1);
+}
+
+.topic-section__title {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.topic-section__line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+
+/* ============================================================
+   12. SUBJECT SIDEBAR
+   Optional sticky sidebar for large screens
+   ============================================================ */
+
+.subject-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+.subject-sidebar {
+  position: sticky;
+  top: calc(var(--navbar-height) + var(--space-6));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.sidebar-card {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.sidebar-card__title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.sidebar-card__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.sidebar-card__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.sidebar-card__item svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+  color: var(--subject-color, var(--color-accent));
+}
+
+.sidebar-card__item span {
+  color: var(--color-text-secondary);
+}
+
+
+/* ============================================================
+   13. SUBJECT COLOR THEMES
+   Each subject gets its own CSS custom property overrides
+   Apply via class on <body> or the subject hero element
+   ============================================================ */
+
+/* Python — blue */
+.theme-python {
+  --subject-color:         #3b82f6;
+  --subject-color-alpha:   rgba(59, 130, 246, 0.15);
+  --subject-color-alpha-soft: rgba(59, 130, 246, 0.07);
+  --subject-color-bg:      rgba(59, 130, 246, 0.08);
+  --subject-color-border:  rgba(59, 130, 246, 0.25);
+}
+
+/* EDA — emerald */
+.theme-eda {
+  --subject-color:         #10b981;
+  --subject-color-alpha:   rgba(16, 185, 129, 0.15);
+  --subject-color-alpha-soft: rgba(16, 185, 129, 0.07);
+  --subject-color-bg:      rgba(16, 185, 129, 0.08);
+  --subject-color-border:  rgba(16, 185, 129, 0.25);
+}
+
+/* Machine Learning — violet */
+.theme-machine-learning {
+  --subject-color:         #8b5cf6;
+  --subject-color-alpha:   rgba(139, 92, 246, 0.15);
+  --subject-color-alpha-soft: rgba(139, 92, 246, 0.07);
+  --subject-color-bg:      rgba(139, 92, 246, 0.08);
+  --subject-color-border:  rgba(139, 92, 246, 0.25);
+}
+
+/* Deep Learning — pink */
+.theme-deep-learning {
+  --subject-color:         #ec4899;
+  --subject-color-alpha:   rgba(236, 72, 153, 0.15);
+  --subject-color-alpha-soft: rgba(236, 72, 153, 0.07);
+  --subject-color-bg:      rgba(236, 72, 153, 0.08);
+  --subject-color-border:  rgba(236, 72, 153, 0.25);
+}
+
+/* NLP — cyan */
+.theme-nlp {
+  --subject-color:         #06b6d4;
+  --subject-color-alpha:   rgba(6, 182, 212, 0.15);
+  --subject-color-alpha-soft: rgba(6, 182, 212, 0.07);
+  --subject-color-bg:      rgba(6, 182, 212, 0.08);
+  --subject-color-border:  rgba(6, 182, 212, 0.25);
+}
+
+/* LLM — amber */
+.theme-llm {
+  --subject-color:         #f59e0b;
+  --subject-color-alpha:   rgba(245, 158, 11, 0.15);
+  --subject-color-alpha-soft: rgba(245, 158, 11, 0.07);
+  --subject-color-bg:      rgba(245, 158, 11, 0.08);
+  --subject-color-border:  rgba(245, 158, 11, 0.25);
+}
+
+/* AI Agents — orange */
+.theme-ai-agents {
+  --subject-color:         #f97316;
+  --subject-color-alpha:   rgba(249, 115, 22, 0.15);
+  --subject-color-alpha-soft: rgba(249, 115, 22, 0.07);
+  --subject-color-bg:      rgba(249, 115, 22, 0.08);
+  --subject-color-border:  rgba(249, 115, 22, 0.25);
+}
+
+/* MLOps — rose */
+.theme-mlops {
+  --subject-color:         #f43f5e;
+  --subject-color-alpha:   rgba(244, 63, 94, 0.15);
+  --subject-color-alpha-soft: rgba(244, 63, 94, 0.07);
+  --subject-color-bg:      rgba(244, 63, 94, 0.08);
+  --subject-color-border:  rgba(244, 63, 94, 0.25);
+}
+
+/* More — slate */
+.theme-more {
+  --subject-color:         #94a3b8;
+  --subject-color-alpha:   rgba(148, 163, 184, 0.15);
+  --subject-color-alpha-soft: rgba(148, 163, 184, 0.07);
+  --subject-color-bg:      rgba(148, 163, 184, 0.08);
+  --subject-color-border:  rgba(148, 163, 184, 0.25);
+}
+
+
+/* ============================================================
+   14. ANIMATIONS
+   ============================================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.subject-hero__breadcrumb {
+  animation: fadeInUp 0.5s ease both;
+  animation-delay: 0.05s;
+}
+
+.subject-hero__tag {
+  animation: fadeInUp 0.5s ease both;
+  animation-delay: 0.1s;
+}
+
+.subject-hero__title {
+  animation: fadeInUp 0.5s ease both;
+  animation-delay: 0.15s;
+}
+
+.subject-hero__desc {
+  animation: fadeInUp 0.5s ease both;
+  animation-delay: 0.2s;
+}
+
+.subject-hero__meta {
+  animation: fadeInUp 0.5s ease both;
+  animation-delay: 0.25s;
+}
+
+.subject-hero__actions {
+  animation: fadeInUp 0.5s ease both;
+  animation-delay: 0.3s;
+}
+
+.topic-item {
+  animation: fadeInUp 0.4s ease both;
+}
+
+.topic-item:nth-child(1)  { animation-delay: 0.05s; }
+.topic-item:nth-child(2)  { animation-delay: 0.08s; }
+.topic-item:nth-child(3)  { animation-delay: 0.11s; }
+.topic-item:nth-child(4)  { animation-delay: 0.14s; }
+.topic-item:nth-child(5)  { animation-delay: 0.17s; }
+.topic-item:nth-child(6)  { animation-delay: 0.20s; }
+.topic-item:nth-child(7)  { animation-delay: 0.23s; }
+.topic-item:nth-child(8)  { animation-delay: 0.26s; }
+.topic-item:nth-child(9)  { animation-delay: 0.29s; }
+.topic-item:nth-child(10) { animation-delay: 0.32s; }
+.topic-item:nth-child(11) { animation-delay: 0.35s; }
+.topic-item:nth-child(12) { animation-delay: 0.38s; }
+
+
+/* ============================================================
+   15. RESPONSIVE — Tablet
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .subject-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .subject-sidebar {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+
+  .subject-hero {
+    min-height: 50vh;
+    padding-bottom: var(--space-12);
+  }
+
+  .subject-topics__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-5);
+  }
+}
+
+
+/* ============================================================
+   16. RESPONSIVE — Mobile
+   ============================================================ */
+
+@media (max-width: 767px) {
+  .subject-hero {
+    min-height: auto;
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-10);
+    align-items: flex-start;
+  }
+
+  .subject-hero__content {
+    gap: var(--space-4);
+  }
+
+  .subject-hero__meta {
+    gap: var(--space-4);
+  }
+
+  .subject-hero__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .subject-hero__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .subject-topics {
+    padding-block: var(--space-12);
+  }
+
+  .subject-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .topic-item {
+    padding: var(--space-4) var(--space-5);
+    gap: var(--space-4);
+  }
+
+  .topic-item__meta {
+    display: none;
+  }
+
+  .subject-progress__inner {
+    gap: var(--space-4);
+  }
+}
+
+
+/* ============================================================
+   17. RESPONSIVE — Small Mobile
+   ============================================================ */
+
+@media (max-width: 480px) {
+  .subject-hero__title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .subject-topics__title {
+    font-size: var(--font-size-xl);
+  }
+
+  .topic-item__desc {
+    display: none;
+  }
+
+  .subject-topics__filter {
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: var(--space-2);
+    scrollbar-width: none;
+  }
+
+  .subject-topics__filter::-webkit-scrollbar {
+    display: none;
+  }
+}

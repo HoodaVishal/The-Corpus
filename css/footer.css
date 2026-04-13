@@ -1,0 +1,448 @@
+/* ============================================================
+   FOOTER.CSS — The Corpus
+   Styles for the site-wide footer used across all pages
+   ============================================================ */
+
+
+/* ============================================================
+   1. FOOTER BASE
+   ============================================================ */
+
+#footer {
+  position: relative;
+  background-color: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--space-16);
+  overflow: hidden;
+}
+
+/* Subtle top gradient fade */
+#footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(41, 151, 255, 0.25) 30%,
+    rgba(167, 139, 250, 0.25) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   2. FOOTER INNER LAYOUT
+   ============================================================ */
+
+.footer__inner {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--space-16);
+  align-items: start;
+}
+
+
+/* ============================================================
+   3. FOOTER LEFT — Logo + Tagline + Copyright
+   ============================================================ */
+
+.footer__left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.footer__logo {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.footer__logo img {
+  height: 20px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.75;
+  transition: opacity var(--transition-fast);
+}
+
+.footer__logo:hover img {
+  opacity: 1;
+}
+
+.footer__tagline {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-relaxed);
+  max-width: 200px;
+}
+
+.footer__copy {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-normal);
+  max-width: none;
+}
+
+.footer__copy a {
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.footer__copy a:hover {
+  color: var(--color-text-primary);
+}
+
+
+/* ============================================================
+   4. FOOTER RIGHT — Navigation columns
+   ============================================================ */
+
+.footer__right {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+}
+
+
+/* ============================================================
+   5. FOOTER NAV COLUMN
+   ============================================================ */
+
+.footer__col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.footer__col-title {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.footer__col-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.footer__col-links a {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-normal);
+  transition: color var(--transition-fast);
+  width: fit-content;
+  position: relative;
+}
+
+.footer__col-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-accent);
+  transition: width var(--transition-fast);
+}
+
+.footer__col-links a:hover {
+  color: var(--color-text-primary);
+}
+
+.footer__col-links a:hover::after {
+  width: 100%;
+}
+
+
+/* ============================================================
+   6. FOOTER BOTTOM BAR
+   ============================================================ */
+
+.footer__bottom {
+  margin-top: var(--space-12);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.footer__bottom-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.footer__bottom-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.footer__bottom-links a {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.footer__bottom-links a:hover {
+  color: var(--color-text-primary);
+}
+
+.footer__bottom-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+
+/* ============================================================
+   7. SOCIAL LINKS
+   ============================================================ */
+
+.footer__socials {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.footer__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.footer__social-link svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.footer__social-link:hover {
+  background-color: var(--color-bg-hover);
+  border-color: var(--color-border-strong);
+  color: var(--color-text-primary);
+  transform: translateY(-2px);
+}
+
+/* Individual social brand colors on hover */
+.footer__social-link--github:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.footer__social-link--twitter:hover {
+  color: #1d9bf0;
+  border-color: rgba(29, 155, 240, 0.3);
+}
+
+.footer__social-link--linkedin:hover {
+  color: #0a66c2;
+  border-color: rgba(10, 102, 194, 0.3);
+}
+
+.footer__social-link--youtube:hover {
+  color: #ff0000;
+  border-color: rgba(255, 0, 0, 0.3);
+}
+
+
+/* ============================================================
+   8. BACK TO TOP LINK (inside footer)
+   ============================================================ */
+
+.footer__back-top {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.footer__back-top svg {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform var(--transition-fast);
+}
+
+.footer__back-top:hover {
+  color: var(--color-text-primary);
+}
+
+.footer__back-top:hover svg {
+  transform: translateY(-2px);
+}
+
+
+/* ============================================================
+   9. FOOTER BADGE — "Open Source" or similar
+   ============================================================ */
+
+.footer__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  background-color: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: var(--space-1) var(--space-3);
+  white-space: nowrap;
+}
+
+.footer__badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-success);
+  flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1;   transform: scale(1);    }
+  50%       { opacity: 0.5; transform: scale(0.85); }
+}
+
+
+/* ============================================================
+   10. MINIMAL FOOTER VARIANT
+   Used on pages that only need a simple footer
+   Add class="footer--minimal" to #footer
+   ============================================================ */
+
+#footer.footer--minimal {
+  padding-block: var(--space-10);
+}
+
+#footer.footer--minimal .footer__inner {
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+#footer.footer--minimal .footer__bottom {
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+}
+
+
+/* ============================================================
+   11. RESPONSIVE — Tablet
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .footer__inner {
+    grid-template-columns: 200px 1fr;
+    gap: var(--space-12);
+  }
+
+  .footer__right {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+}
+
+
+/* ============================================================
+   12. RESPONSIVE — Mobile
+   ============================================================ */
+
+@media (max-width: 767px) {
+  #footer {
+    padding-block: var(--space-12);
+  }
+
+  .footer__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  .footer__left {
+    gap: var(--space-4);
+  }
+
+  .footer__tagline {
+    max-width: 100%;
+  }
+
+  .footer__right {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-5);
+    margin-top: var(--space-8);
+    padding-top: var(--space-6);
+  }
+
+  .footer__bottom-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .footer__bottom-links {
+    gap: var(--space-4);
+  }
+}
+
+
+/* ============================================================
+   13. RESPONSIVE — Small Mobile
+   ============================================================ */
+
+@media (max-width: 480px) {
+  .footer__right {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .footer__socials {
+    gap: var(--space-2);
+  }
+
+  .footer__bottom-right {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+}
